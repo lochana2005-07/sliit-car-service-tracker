@@ -1,42 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Car Service Registration</title>
-    <style>
-        body { background: #121212; color: #d4af37; font-family: sans-serif; text-align: center; }
-        .box { border: 2px solid #d4af37; padding: 30px; width: 350px; margin: 50px auto; border-radius: 15px; background: #1e1e1e; }
-        input { width: 90%; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #222; color: white; }
-        button { background: #d4af37; color: black; padding: 12px 25px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIIT Car Service Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-<div class="box">
-    <h2>Register Your Vehicle</h2>
-    <input type="text" id="vNo" placeholder="Vehicle Number (Ex: WP-XX-1234)">
-    <input type="text" id="brand" placeholder="Brand (Ex: Toyota)">
-    <input type="text" id="model" placeholder="Model (Ex: Corolla)">
-    <input type="number" id="year" placeholder="Year">
-    <button onclick="saveVehicle()">SUBMIT</button>
+<body class="bg-gray-900 text-white font-sans">
+
+<!-- Sidebar & Dashboard Layout -->
+<div class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <div class="w-64 bg-gray-800 p-6 flex-shrink-0 border-r border-gray-700">
+        <h1 class="text-2xl font-bold text-blue-500 mb-8 tracking-wider">CAR CARE PRO</h1>
+        <nav class="space-y-4">
+            <a href="#" class="flex items-center space-x-3 p-3 bg-blue-600 rounded-lg"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+            <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-700 rounded-lg"><i class="fas fa-car"></i> <span>Vehicles</span></a>
+            <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-700 rounded-lg"><i class="fas fa-tools"></i> <span>Scheduling</span></a>
+            <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-700 rounded-lg"><i class="fas fa-history"></i> <span>History</span></a>
+            <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-700 rounded-lg"><i class="fas fa-user-cog"></i> <span>Mechanics</span></a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8">
+        <header class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-semibold">Service Management</h2>
+            <div class="flex items-center space-x-4">
+                <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium border border-green-500/30">System Live</span>
+                <img src="https://ui-avatars.com/api/?name=Lochana&background=0D8ABC&color=fff" class="w-10 h-10 rounded-full border-2 border-blue-500">
+            </div>
+        </header>
+
+        <!-- Input Form Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl">
+                <h3 class="text-xl font-medium mb-6 flex items-center"><i class="fas fa-plus-circle mr-2 text-blue-500"></i> Add New Record</h3>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Vehicle Number (e.g. WP ABC-1234)" class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                    <select class="w-full p-4 bg-gray-900 border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option>Service Type</option>
+                        <option>Full Service</option>
+                        <option>Oil Change</option>
+                        <option>Tire Alignment</option>
+                    </select>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition duration-300 shadow-lg shadow-blue-500/20">Process Data</button>
+                </div>
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-600/10 border border-blue-500/30 p-6 rounded-2xl flex flex-col justify-center items-center">
+                    <span class="text-4xl mb-2">🚗</span>
+                    <p class="text-gray-400 text-sm">Vehicles</p>
+                    <p class="text-2xl font-bold">24</p>
+                </div>
+                <div class="bg-purple-600/10 border border-purple-500/30 p-6 rounded-2xl flex flex-col justify-center items-center">
+                    <span class="text-4xl mb-2">🛠️</span>
+                    <p class="text-gray-400 text-sm">Services</p>
+                    <p class="text-2xl font-bold">12</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-gray-700 bg-gray-800/50">
+                <h3 class="text-lg font-medium">Recent Maintenance History</h3>
+            </div>
+            <table class="w-full text-left">
+                <thead class="bg-gray-900/50 text-gray-400 text-xs uppercase">
+                <tr>
+                    <th class="p-4">Vehicle ID</th>
+                    <th class="p-4">Date</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4">Action</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                <tr class="hover:bg-gray-700/30 transition">
+                    <td class="p-4 font-mono text-blue-400">WP CAB-5566</td>
+                    <td class="p-4 text-gray-300">2026-05-13</td>
+                    <td class="p-4"><span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-xs">Pending</span></td>
+                    <td class="p-4"><button class="text-blue-500 hover:underline">View Details</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </div>
-
-<script>
-    function saveVehicle() {
-        const data = {
-            vehicleNumber: document.getElementById('vNo').value,
-            brand: document.getElementById('brand').value,
-            model: document.getElementById('model').value,
-            year: parseInt(document.getElementById('year').value)
-        };
-
-        fetch('http://localhost:8080/api/vehicles/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.text())
-        .then(msg => alert(msg))
-        .catch(err => alert('Error: ' + err));
-    }
-</script>
 </body>
 </html>
