@@ -12,23 +12,19 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Mandatory for Railway to identify the application entry point -->
-        <exec.mainClass>src.main.java.Main</exec.mainClass>
+        <exec.mainClass>Main</exec.mainClass>
     </properties>
 
     <build>
         <plugins>
-            <!-- Plugin to run the Java application -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>src.main.java.Main</mainClass>
+                    <mainClass>Main</mainClass>
                 </configuration>
             </plugin>
-
-            <!-- Plugin to include Main Class in the executable JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -36,12 +32,11 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>src.main.java.Main</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
