@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Service Registration</title>
+    <style>
+        body { background: #121212; color: #d4af37; font-family: sans-serif; text-align: center; }
+        .box { border: 2px solid #d4af37; padding: 30px; width: 350px; margin: 50px auto; border-radius: 15px; background: #1e1e1e; }
+        input { width: 90%; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #222; color: white; }
+        button { background: #d4af37; color: black; padding: 12px 25px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Register Your Vehicle</h2>
+    <input type="text" id="vNo" placeholder="Vehicle Number (Ex: WP-XX-1234)">
+    <input type="text" id="brand" placeholder="Brand (Ex: Toyota)">
+    <input type="text" id="model" placeholder="Model (Ex: Corolla)">
+    <input type="number" id="year" placeholder="Year">
+    <button onclick="saveVehicle()">SUBMIT</button>
+</div>
+
+<script>
+    function saveVehicle() {
+        const data = {
+            vehicleNumber: document.getElementById('vNo').value,
+            brand: document.getElementById('brand').value,
+            model: document.getElementById('model').value,
+            year: parseInt(document.getElementById('year').value)
+        };
+
+        fetch('http://localhost:8080/api/vehicles/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.text())
+        .then(msg => alert(msg))
+        .catch(err => alert('Error: ' + err));
+    }
+</script>
+</body>
+</html>
